@@ -35,7 +35,7 @@
       flex-wrap: wrap;
     }
 
-    .box, .center-box {
+    .box {
       flex: 1;
       min-width: 250px;
       text-align: center;
@@ -45,11 +45,20 @@
       flex-direction: column;
       justify-content: flex-start;
       box-sizing: border-box;
-      min-height: 400px; /* Ensures same height */
+      min-height: 400px;
     }
 
-    .cassette {
-      cursor: pointer;
+    .center-box {
+      flex: 2; /* Makes center box wider */
+      min-width: 300px;
+      text-align: center;
+      padding: 15px;
+      border: 2px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-sizing: border-box;
+      min-height: 400px;
     }
 
     .center-box img {
@@ -143,7 +152,7 @@
     </div>
 
     <!-- Footer -->
-    <div class="footer">Shaur loves you very much ♡</div>
+    <div class="footer">Shaun loves you very much ♡</div>
   </div>
 
   <script>
