@@ -28,16 +28,15 @@
 
     .top-section {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: stretch;
       width: 100%;
       gap: 20px;
-      flex-wrap: wrap;
     }
 
     .box {
-      flex: 1;
-      min-width: 250px;
+      width: 25%;
+      min-width: 200px;
       text-align: center;
       padding: 15px;
       border: 2px solid black;
@@ -49,8 +48,7 @@
     }
 
     .center-box {
-      flex: 2; /* Makes center box wider */
-      min-width: 300px;
+      width: 50%;
       text-align: center;
       padding: 15px;
       border: 2px solid black;
@@ -85,7 +83,11 @@
       flex-grow: 1;
     }
 
-    /* Spinning Animation */
+    .cassette {
+      cursor: pointer;
+    }
+
+    /* SVG Animation */
     .spinning {
       animation: spin 2s linear infinite;
       transform-origin: center;
@@ -100,6 +102,17 @@
       width: 130px;
       height: auto;
       margin: 10px auto 0;
+    }
+
+    /* Responsive stacking */
+    @media (max-width: 900px) {
+      .top-section {
+        flex-wrap: wrap;
+      }
+
+      .box, .center-box {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -152,7 +165,7 @@
     </div>
 
     <!-- Footer -->
-    <div class="footer">Shaun loves you very much ♡</div>
+    <div class="footer">Shaur loves you very much ♡</div>
   </div>
 
   <script>
