@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Card</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cursive', sans-serif;
+      background-color: #fffafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      max-width: 1200px;
+      border: 3px solid black;
+      padding: 20px;
+    }
+
+    .top-section {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      width: 30%;
+      text-align: center;
+      padding: 10px;
+      border: 2px solid black;
+      margin: 10px;
+    }
+
+    .cassette {
+      cursor: pointer;
+    }
+
+    .center-box {
+      width: 40%;
+      text-align: center;
+      padding: 10px;
+      border: 2px solid black;
+      margin: 10px;
+    }
+
+    .center-box img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 18px;
+    }
+
+    .message {
+      margin-top: 10px;
+      font-size: 20px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* Spinning Animation */
+    .spinning {
+      animation: spin 2s linear infinite;
+      transform-origin: center;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+
+    svg {
+      width: 130px;
+      height: auto;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card-container">
+    <div class="top-section">
+      
+      <!-- Cassette Player Box -->
+      <div class="box cassette" id="cassette">
+        <p>{ Make a Wish }</p>
+        <p><strong>Cassette Player</strong><br>with animation</p>
+        <p>→ song mp3 format</p>
+
+        <!-- More Detailed SVG Cassette -->
+        <svg viewBox="0 0 200 120">
+          <!-- Cassette Body -->
+          <rect x="10" y="10" width="180" height="100" rx="12" ry="12" fill="#2b2b2b" stroke="#000" stroke-width="4"/>
+          <!-- Label Area -->
+          <rect x="30" y="25" width="140" height="30" fill="#f2f2f2" stroke="#999" stroke-width="1"/>
+          <text x="100" y="45" font-size="10" fill="#000" text-anchor="middle" font-family="sans-serif">Side A — Happy Birthday Mix</text>
+
+          <!-- Tape Window -->
+          <rect x="50" y="60" width="100" height="30" fill="#ccc" stroke="#000" stroke-width="2" rx="5"/>
+
+          <!-- Left Wheel -->
+          <circle id="wheel-left" cx="75" cy="75" r="12" fill="#666"/>
+          <circle cx="75" cy="75" r="5" fill="#000"/>
+
+          <!-- Right Wheel -->
+          <circle id="wheel-right" cx="125" cy="75" r="12" fill="#666"/>
+          <circle cx="125" cy="75" r="5" fill="#000"/>
+
+          <!-- Tape Strip -->
+          <rect x="75" y="73" width="50" height="4" fill="#222"/>
+
+          <!-- Screw Dots -->
+          <circle cx="25" cy="25" r="2" fill="#999"/>
+          <circle cx="175" cy="25" r="2" fill="#999"/>
+          <circle cx="25" cy="95" r="2" fill="#999"/>
+          <circle cx="175" cy="95" r="2" fill="#999"/>
+        </svg>
+
+        <audio id="birthdaySong" src="audio.mp3"></audio>
+      </div>
+
+      <!-- Center Cake and Message -->
+      <div class="center-box">
+        <img src="cake.png" alt="Cake and Polaroids" />
+        <h2>Happy BDay…</h2>
+        <div class="message">Wishing you the sweetest day ever 🎂💖</div>
+      </div>
+
+      <!-- Video Player -->
+      <div class="box">
+        <p><strong>Video Player</strong><br>mp4 format</p>
+        <video controls>
+          <source src="video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">Shaur loves you very much ♡</div>
+  </div>
+
+  <script>
+    const cassette = document.getElementById('cassette');
+    const song = document.getElementById('birthdaySong');
+    const wheelLeft = document.getElementById('wheel-left');
+    const wheelRight = document.getElementById('wheel-right');
+
+    cassette.addEventListener('click', () => {
+      if (song.paused) {
+        song.play();
+        wheelLeft.classList.add('spinning');
+        wheelRight.classList.add('spinning');
+      } else {
+        song.pause();
+        wheelLeft.classList.remove('spinning');
+        wheelRight.classList.remove('spinning');
+      }
+    });
+  </script>
+</body>
+</html>
