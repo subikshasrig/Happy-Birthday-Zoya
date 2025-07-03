@@ -3,27 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Birthday Card</title>
+  <title>Happy 18th, Zoya</title>
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
       font-family: 'Cursive', sans-serif;
-      background-color: #fffafc;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      background-color: #fff0f6;
+      overflow: hidden;
+    }
+
+    canvas#hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
     }
 
     .card-container {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 90%;
       max-width: 1200px;
-      border: 3px solid black;
+      margin: auto;
+      border: 3px solid #ffb6d9;
+      border-radius: 20px;
       padding: 20px;
+      background: #fff6fb;
+      box-shadow: 0 0 30px rgba(255, 182, 193, 0.3);
     }
 
     .top-section {
@@ -39,31 +53,47 @@
       min-width: 200px;
       text-align: center;
       padding: 15px;
-      border: 2px dashed #e3a8e5;
+      border: 3px solid transparent;
       border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      background: #fff9fc;
+      background: linear-gradient(#fff0f6, #fff0f6) padding-box,
+                  linear-gradient(135deg, #ff84a2, #ffc0cb, #ff84a2) border-box;
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       display: flex;
       flex-direction: column;
       justify-content: center;
       box-sizing: border-box;
       min-height: 400px;
+      position: relative;
+      animation: sparkle 3s ease-in-out infinite;
     }
-    
+
+    @keyframes sparkle {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.2); }
+    }
+
     .center-box {
       width: 50%;
       text-align: center;
       padding: 15px;
-      border: 2px solid #ffa7d7;
+      border: 3px solid #ff6fae;
       border-radius: 25px;
-      box-shadow: 0 6px 16px rgba(255, 157, 204, 0.25);
-      background: linear-gradient(145deg, #fff5fa, #ffeef7);
+      background: linear-gradient(145deg, #fff0f8, #ffd6ea);
+      box-shadow: 0 6px 16px rgba(255, 105, 180, 0.25);
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       box-sizing: border-box;
       min-height: 400px;
       cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .center-box:hover {
+      box-shadow: 0 0 40px rgba(255, 105, 180, 0.6), 0 0 20px rgba(255, 105, 180, 0.3);
+      transform: scale(1.03);
     }
 
     .center-box img {
@@ -71,23 +101,27 @@
       max-height: 250px;
       object-fit: cover;
       border-radius: 10px;
+      border: 2px dashed #ff99bb;
     }
 
     .footer {
       margin-top: 20px;
       font-style: italic;
       font-size: 18px;
+      color: #ff4d88;
     }
 
     .message {
       margin-top: 10px;
       font-size: 20px;
+      color: #cc2e5d;
     }
 
     video {
       width: 100%;
       border-radius: 10px;
       flex-grow: 1;
+      border: 2px solid #ff8abf;
     }
 
     @media (max-width: 900px) {
@@ -102,41 +136,45 @@
   </style>
 </head>
 <body>
+
+  <!-- Background hearts canvas -->
+  <canvas id="hearts"></canvas>
+
   <div class="card-container">
     <div class="top-section">
-      
-      <!-- Left Box Placeholder -->
+
+      <!-- Left Box -->
       <div class="box">
-        <p><strong>Left Box</strong></p>
-        <p>You can add an image, audio trigger, or message here 🎵</p>
+        <p><strong>Title Track</strong></p>
+        <p>Make A Wish</p>
       </div>
 
       <!-- Center Cake and Message -->
       <div class="center-box" id="centerBox">
         <img src="cake.png" alt="Cake and Polaroids" />
         <h2>Happy Birthday Zoya!</h2>
-        <div class="message">One year past seventeen, cheers🎂</div>
+        <div class="message">One year past Seventeen, cheers🎂</div>
       </div>
 
-      <!-- Video Player -->
+      <!-- Right Box (Video) -->
       <div class="box">
-        <p><strong>Video Player</strong><br>mp4 format</p>
+        <p><strong>Video Clip🎥</strong></p>
         <video controls>
           <source src="video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
+
     </div>
 
     <!-- Footer -->
     <div class="footer">Shaur loves you very much ♡</div>
   </div>
 
-  <!-- Confetti JS -->
+  <!-- Confetti Script -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
     const centerBox = document.getElementById('centerBox');
-
     function launchConfetti() {
       confetti({
         particleCount: 150,
@@ -144,10 +182,65 @@
         origin: { y: 0.6 }
       });
     }
-
     centerBox.addEventListener('click', launchConfetti);
     centerBox.addEventListener('mouseenter', launchConfetti);
   </script>
+
+  <!-- Heart background particles -->
+  <script>
+    const canvas = document.getElementById('hearts');
+    const ctx = canvas.getContext('2d');
+    let hearts = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function createHeart() {
+      return {
+        x: Math.random() * canvas.width,
+        y: canvas.height + 10,
+        size: Math.random() * 12 + 8,
+        speed: Math.random() * 1 + 0.5,
+        opacity: Math.random() * 0.5 + 0.5,
+        drift: Math.random() * 2 - 1
+      };
+    }
+
+    function drawHeart(h) {
+      ctx.save();
+      ctx.translate(h.x, h.y);
+      ctx.scale(h.size / 30, h.size / 30);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(0, -3, -5, -15, -15, -15);
+      ctx.bezierCurveTo(-35, -15, -35, 10, -35, 10);
+      ctx.bezierCurveTo(-35, 25, -20, 40, 0, 50);
+      ctx.bezierCurveTo(20, 40, 35, 25, 35, 10);
+      ctx.bezierCurveTo(35, 10, 35, -15, 15, -15);
+      ctx.bezierCurveTo(5, -15, 0, -3, 0, 0);
+      ctx.closePath();
+      ctx.fillStyle = `rgba(255, 105, 180, ${h.opacity})`;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (Math.random() < 0.1) hearts.push(createHeart());
+      hearts.forEach((h, i) => {
+        h.y -= h.speed;
+        h.x += h.drift;
+        drawHeart(h);
+        if (h.y + h.size < 0) hearts.splice(i, 1);
+      });
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 </body>
 </html>
-
