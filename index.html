@@ -255,5 +255,25 @@
 
     animate();
   </script>
+
+<script>
+  const playImage = document.getElementById('playImage');
+  const audioPlayer = document.getElementById('audioPlayer');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+
+  function toggleAudio() {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      playPauseBtn.textContent = '⏸️';
+    } else {
+      audioPlayer.pause();
+      playPauseBtn.textContent = '▶️';
+    }
+  }
+
+  playImage.addEventListener('click', toggleAudio);
+  playPauseBtn.addEventListener('click', toggleAudio);
+</script>
+
 </body>
 </html>
