@@ -150,32 +150,31 @@
   <div class="card-container">
     <div class="top-section">
 
-      <!-- Left Box -->
+      <!-- Left Box with Play/Pause -->
       <div class="box" style="position: relative;">
         <div style="position: relative;">
           <img id="playImage" src="cd player.png" alt="Title Track Image"
-            style="width: 100%; border-radius: 10px; cursor: pointer;" />
-          <!-- Play/Pause Button Overlay -->
+               style="width: 100%; border-radius: 10px; margin-bottom: 10px; cursor: pointer;" />
           <div id="playPauseBtn"
-            style="position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            padding: 10px;
-            font-size: 24px;
-            cursor: pointer;
-            user-select: none;">
+               style="position: absolute; top: 50%; left: 50%;
+                      transform: translate(-50%, -50%);
+                      background: rgba(255, 255, 255, 0.7);
+                      border-radius: 50%;
+                      padding: 10px;
+                      font-size: 24px;
+                      cursor: pointer;
+                      user-select: none;">
             ▶️
           </div>
         </div>
-        
-        <p><strong>Title Track for your Special Day!</strong></p>
-        <p>MAKE A WISH {click CD player to play}</p>
+
+        <p><strong>Title Track for your Special Day</strong></p>
+        <p>MAKE A WISH {click CD Player to play}</p>
+
         <audio id="audioPlayer">
           <source src="Make A Wish.mp3" type="audio/mp3" />
         </audio>
       </div>
-
 
       <!-- Center Cake and Message -->
       <div class="center-box" id="centerBox">
@@ -271,24 +270,26 @@
     animate();
   </script>
 
-<script>
-  const playImage = document.getElementById('playImage');
-  const audioPlayer = document.getElementById('audioPlayer');
-  const playPauseBtn = document.getElementById('playPauseBtn');
+  <!-- Play/Pause Audio Toggle Script -->
+  <script>
+    const playImage = document.getElementById('playImage');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playPauseBtn = document.getElementById('playPauseBtn');
 
-  function toggleAudio() {
-    if (audioPlayer.paused) {
-      audioPlayer.play();
-      playPauseBtn.textContent = '⏸️';
-    } else {
-      audioPlayer.pause();
-      playPauseBtn.textContent = '▶️';
+    function toggleAudio() {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+        playPauseBtn.textContent = '⏸️';
+      } else {
+        audioPlayer.pause();
+        playPauseBtn.textContent = '▶️';
+      }
     }
-  }
 
-  playImage.addEventListener('click', toggleAudio);
-  playPauseBtn.addEventListener('click', toggleAudio);
-</script>
+    playImage.addEventListener('click', toggleAudio);
+    playPauseBtn.addEventListener('click', toggleAudio);
+  </script>
 
 </body>
 </html>
+
