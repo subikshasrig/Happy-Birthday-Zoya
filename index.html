@@ -76,7 +76,6 @@
       animation: sparkle 3s ease-in-out infinite;
     }
 
-    /* Reduce spacing between the two paragraphs inside the box */
     .box p:first-of-type {
       margin-bottom: 5px;
     }
@@ -153,13 +152,11 @@
 </head>
 <body>
 
-  <!-- Background hearts canvas -->
   <canvas id="hearts"></canvas>
 
   <div class="card-container">
     <div class="top-section">
 
-      <!-- Left Box -->
       <div class="box">
         <img id="playImage" src="cd player.png" alt="Title Track Image" style="width: 100%; border-radius: 10px; margin-bottom: 10px; cursor: pointer;" />
         <p><strong>Title Track for your Special Day</strong></p>
@@ -170,14 +167,12 @@
         </audio>
       </div>
 
-      <!-- Center Cake and Message -->
       <div class="center-box" id="centerBox">
         <img src="Zoya.png" alt="Banner" />
         <h2>Happy Birthday Zoya!</h2>
         <div class="message">One year past Seventeen, cheers🎂</div>
       </div>
 
-      <!-- Right Box (Video) -->
       <div class="box">
         <p><strong>Infinite Aura Kit</strong></p>
         <video controls>
@@ -188,11 +183,11 @@
 
     </div>
 
-    <!-- Footer -->
+    
     <div class="footer">Shaur loves you very much ♡</div>
   </div>
 
-  <!-- Confetti Script -->
+
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
     const centerBox = document.getElementById('centerBox');
@@ -207,7 +202,7 @@
     centerBox.addEventListener('mouseenter', launchConfetti);
   </script>
 
-  <!-- Heart background particles -->
+  
   <script>
     const canvas = document.getElementById('hearts');
     const ctx = canvas.getContext('2d');
